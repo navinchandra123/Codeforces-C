@@ -1,0 +1,52 @@
+// https://codeforces.com/problemset/problem/131/C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+
+ll ncr(ll n , ll r){
+	if(r==0)return 1;
+	if(n-r<r)r=n-r;
+	ll p=1,k=1,g=0;
+	while(r!=0){
+		p=p*n;
+		k=k*r;
+		g=__gcd(p,k);
+		p=p/g;k=k/g;
+		n--;r--;
+	}
+	return p/k;
+}
+
+int main(){
+	mahakal();fast;
+
+	ll a  , b , c;
+	cin>>a>>b>>c;
+	ll x , y,ans=0;
+	for(ll i=4;i<=a;i++){
+		ll x=i;
+		if(c-x<=b && c-x>=1){
+			y=c-x;
+		}else{
+			continue;
+		}
+		ans+=ncr(a,x)*ncr(b,y);
+	}
+	cout<<ans<<endl;
+
+	return 0;
+}
