@@ -1,0 +1,38 @@
+/// https://codeforces.com/problemset/problem/9/C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+vector<ll> vec;
+void solve(ll sum=1){
+	if(sum>1e9)return ;
+	vec.pb(sum);
+	solve(sum*10);
+	solve(sum*10+1);
+}
+
+int main(){
+	mahakal();fast;
+
+	ll n ;
+	cin>>n ;
+	solve();
+	sort(vec.begin(),vec.end());
+	ll ans = lower_bound(vec.begin(),vec.end(),n+1)-vec.begin();
+	cout<<ans<<endl;
+
+	return 0;
+}
